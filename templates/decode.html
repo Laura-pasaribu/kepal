@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ekstraksi Steganografi</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; }
+        h1 { color: #4CAF50; }
+        form { margin-bottom: 20px; }
+        input[type="file"] { margin: 10px 0; }
+        button { background-color: #4CAF50; color: white; border: none; padding: 10px 15px; cursor: pointer; }
+        button:hover { background-color: #45a049; }
+        .result { margin-top: 20px; }
+    </style>
+</head>
+<body>
+    <h1>Ekstraksi Steganografi</h1>
+    <form method="POST" enctype="multipart/form-data">
+        <label for="image">Pilih Gambar (PNG/BMP):</label>
+        <input type="file" name="image" accept=".png, .bmp" required>
+        <br>
+        <button type="submit">Ekstrak Data</button>
+    </form>
+
+    <div class="result">
+        {% if secret_text %}
+        <h2>Teks Rahasia:</h2>
+        <p>{{ secret_text }}</p>
+        <h2>File Dokumen yang Diekstrak:</h2>
+        {% if extracted_file_path %}
+        <a href="{{ extracted_file_path }}">Download File</a>
+        {% else %}
+        <p>Tidak ada file yang diekstrak.</p>
+        {% endif %}
+        {% endif %}
+    </div>
+</body>
+</html>
